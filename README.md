@@ -37,7 +37,7 @@
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/yourusername/edge-tts-web.git
+git clone https://github.com/D6397/edge-tts-web.git
 cd edge-tts-web
 ```
 
@@ -86,7 +86,7 @@ SECRET_KEY=your-secret-key
 
 ### 数据库配置
 
-默认���用 SQLite 数据库，数据库文件会自动创建在项目根目录。
+默认用 SQLite 数据库，数据库文件会自动创建在项目根目录。
 
 ## 👥 用户功能
 
