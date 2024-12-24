@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局测试</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .how-to-use {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .how-to-use h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .step {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+        }
+        
+        .step-content h3 {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .step-content p {
+            color: #666;
+            margin-bottom: 0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .how-to-use {
+                margin: 2rem 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .how-to-use {
+                padding: 3rem 1rem;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .step {
+                padding: 1.5rem;
+            }
+            
+            .how-to-use h2 {
+                font-size: 1.75rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .how-to-use {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .how-to-use h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .step {
+                padding: 1.25rem;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+            
+            .step-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .step-content p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <section class="how-to-use">
+            <h2>如何免费使用在线文本转语音</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>输入文本</h3>
+                        <p>在文本框中输入或粘贴您想要转换的文字内容（最多3000字）。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>选择声音</h3>
+                        <p>从15种专业配音中选择一个适合您需求的声音。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>生成音频</h3>
+                        <p>点击"转换为语音"按钮，等待系统生成音频文件。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>下载使用</h3>
+                        <p>预览并下载生成的音频文件，如需要还可以下载配套字幕。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

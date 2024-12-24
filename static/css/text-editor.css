@@ -1,0 +1,247 @@
+.text-editor-section {
+    width: 800px;
+    min-width: 0;
+    background: white;
+    border-radius: 8px;
+}
+
+.character-count {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+#voiceDescription {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.text-editor {
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.text-editor textarea {
+    width: 100%;
+    height: 300px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    background: #ffffff;
+    transition: border-color 0.2s ease;
+}
+
+.text-editor textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.editor-buttons {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 1;
+}
+
+.init-button,
+.clear-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    transition: all 0.2s ease;
+}
+
+.init-button:hover,
+.clear-button:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.init-button .icon,
+.clear-button .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+}
+
+.audio-controls {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.audio-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.audio-player {
+    flex: 1;
+    height: 40px;
+    min-width: 0;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.download-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4662D9;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.download-button:hover {
+    background-color: #3951c2;
+}
+
+.download-button .icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .text-editor-section {
+        padding: 0.75rem;
+    }
+
+    .download-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-editor textarea {
+        height: 200px;
+    }
+}
+
+.voice-controls {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.control-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-group label {
+    min-width: 3em;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.range-control {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.range-control input[type="range"] {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #e9ecef;
+    border-radius: 2px;
+    outline: none;
+}
+
+.range-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.range-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.range-value-container {
+    min-width: 2.5em;
+    text-align: center;
+}
+
+.range-value {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .voice-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .control-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .range-control {
+        width: 100%;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+    .audio-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .audio-player {
+        width: 100%;
+    }
+    
+    .download-buttons {
+        width: 100%;
+    }
+    
+    .download-button {
+        flex: 1;
+        justify-content: center;
+    }
+}

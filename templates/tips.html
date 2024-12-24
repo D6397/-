@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用技巧</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .tips-section {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tips-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .tips-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .tip {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tip h3 {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tip ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tip li {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .tip li::before {
+            content: "•";
+            color: #007bff;
+            position: absolute;
+            left: 0.5rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1024px) {
+            .tips-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tips-section {
+                padding: 3rem 1rem;
+                margin: 2rem 1rem;
+            }
+            
+            .tips-section h2 {
+                font-size: 1.75rem;
+                margin-bottom: 2rem;
+            }
+            
+            .tip {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tips-section {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .tips-section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .tip {
+                padding: 1.25rem;
+            }
+            
+            .tip h3 {
+                font-size: 1.1rem;
+            }
+            
+            .tip p,
+            .tip li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <section class="tips-section">
+            <h2>使用技巧</h2>
+            <div class="tips-content">
+                <div class="tip">
+                    <h3>📝 文本优化</h3>
+                    <p>为获得最佳效果，建议在输入文本时注意以下几点：</p>
+                    <ul>
+                        <li>使用标准的中文标点符号</li>
+                        <li>适当分段，使用逗号和句号</li>
+                        <li>避免特殊字符和表情符号</li>
+                    </ul>
+                </div>
+                <div class="tip">
+                    <h3>🎯 场景选择</h3>
+                    <p>不同的声音适用于不同的场景：</p>
+                    <ul>
+                        <li>新闻播报：建议选择成熟音色的新闻播报</li>
+                        <li>儿童读物：可选择活泼的年轻音色</li>
+                        <li>商业广告：推荐使用专业的播音音色</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心 - 文本转语音</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/" class="navbar-brand">文本转语音</a>
+        <div class="navbar-nav">
+            <div id="user-menu" class="user-menu">
+                <button class="user-menu-button">
+                    <span id="username">用户名</span>
+                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="user-menu-content">
+                    <a href="/profile" class="user-menu-item">个人主页</a>
+                    <a href="#" onclick="logout()" class="user-menu-item">退出登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="profile-header">
+            <div class="user-info">
+                <h1 id="profile-username">用户名</h1>
+                <p>注册时间：<span id="registration-date">-</span></p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2>使用统计</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="conversion-count">0</div>
+                    <div class="stat-label">转换次数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="subtitle-count">0</div>
+                    <div class="stat-label">生成字幕数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-words">0</div>
+                    <div class="stat-label">总字数</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h2>历史记录</h2>
+            <div id="history-list" class="history-list">
+                <div class="loading">加载中...</div>
+                <div class="empty-state" style="display: none;">暂无历史记录</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/profile.js"></script>
+</body>
+</html> 

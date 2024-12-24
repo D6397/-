@@ -1,0 +1,120 @@
+section.tips-section {
+    background: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 15px;
+    margin: 3rem auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section.tips-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+section.tips-section .tips-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section.tips-section .tip {
+    text-align: left;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+section.tips-section .tip h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+section.tips-section .tip p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+section.tips-section .tip ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+section.tips-section .tip li {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+}
+
+section.tips-section .tip li::before {
+    content: "•";
+    color: #007bff;
+    position: absolute;
+    left: 0.5rem;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    section.tips-section .tips-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    section.tips-section {
+        padding: 3rem 1rem;
+        margin: 2rem 1rem;
+    }
+    
+    section.tips-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    section.tips-section .tip {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section.tips-section {
+        padding: 2rem 1rem;
+        margin: 1rem;
+    }
+    
+    section.tips-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    section.tips-section .tip {
+        padding: 1.25rem;
+    }
+    
+    section.tips-section .tip h3 {
+        font-size: 1.1rem;
+    }
+    
+    section.tips-section .tip p,
+    section.tips-section .tip li {
+        font-size: 0.9rem;
+    }
+} 

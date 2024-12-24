@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本转语音</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/text-editor.css">
+    <link rel="stylesheet" href="/static/css/voice-selector.css">
+    <link rel="stylesheet" href="/static/css/modal.css">
+    <link rel="stylesheet" href="/static/css/slider.css">
+    <link rel="stylesheet" href="/static/css/steps.css">
+    <link rel="stylesheet" href="/static/css/tips.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/" class="navbar-brand">文本转语音</a>
+        <div class="navbar-nav">
+            <div id="guest-buttons" class="auth-buttons">
+                <button class="login-button" onclick="showLoginModal()">登录</button>
+                <button class="register-button" onclick="showRegisterModal()">注册</button>
+            </div>
+            <div id="user-menu" class="user-menu" style="display: none;">
+                <button class="user-menu-button">
+                    <span id="username">用户名</span>
+                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" width="16" height="16">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <div class="user-menu-content">
+                    <a href="/profile" class="user-menu-item">个人主页</a>
+                    <a href="#" onclick="logout()" class="user-menu-item">退出登录</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 登录弹窗 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">登录</h2>
+                <button class="close-modal" onclick="closeLoginModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-control" name="username" placeholder="请输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">密码</label>
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码" required>
+                    </div>
+                    <button type="submit" class="form-submit">登录</button>
+                </form>
+                <div class="form-switch">
+                    还没有账号？<a onclick="switchToRegister()">立即注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册弹窗 -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">注册</h2>
+                <button class="close-modal" onclick="closeRegisterModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="auth-form" id="register-form" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label class="form-label">用户名</label>
+                        <input type="text" class="form-control" name="username" placeholder="请输入用户名" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">密码</label>
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">确认密码</label>
+                        <input type="password" class="form-control" name="confirm_password" placeholder="请再次输入密码" required>
+                    </div>
+                    <button type="submit" class="form-submit">注册</button>
+                </form>
+                <div class="form-switch">
+                    已有账号？<a onclick="switchToLogin()">立即登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="hero">
+            <h1>免费在线文本转语音服务</h1>
+            <p>体验我们完善的文本转语音工具所生成的逼真音频。轻松生成和下载高质量音频，满足您的不同需。</p>
+            <div class="hero-features">
+                <div class="feature">
+                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                        <circle cx="12" cy="12" r="5"></circle>
+                    </svg>
+                    <span>15种专业配音</span>
+                </div>
+                <div class="feature">
+                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+                    </svg>
+                    <span>支持下载</span>
+                </div>
+                <div class="feature">
+                    <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                    <span>字生成</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="converter-container">
+            <div class="text-editor-section">
+                <div class="character-count">
+                    <span id="voiceDescription">小晓 - 温柔甜美的女声</span>
+                </div>
+                <div class="text-editor" style="width: 100%;">
+                    <textarea id="textInput" placeholder="TexttoSpeech.im 是一款实用的免费工具，可将文字转换为语音"></textarea>
+                    <div class="editor-buttons">
+                        <button class="init-button" id="initText" title="初始化文本">
+                            <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                                <path d="M3 12h18M3 6h18M3 18h18"></path>
+                            </svg>
+                        </button>
+                        <button class="clear-button" id="clearText" title="清空文本">
+                            <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                                <path d="M21 12a9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9Z"></path>
+                                <path d="M3.6 9h16.8"></path>
+                                <path d="M3.6 15h16.8"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="voice-controls">
+                    <div class="control-group">
+                        <label for="speed">语速</label>
+                        <div class="range-control">
+                            <input type="range" id="speed" min="0.5" max="2" step="0.1" value="1.0" oninput="console.log('Speed input:', this.value)">
+                            <div class="range-value-container">
+                                <span id="speedValue" class="range-value" data-debug="speed-value">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="pitch">音调</label>
+                        <div class="range-control">
+                            <input type="range" id="pitch" min="0.5" max="2" step="0.1" value="1.0" oninput="console.log('Pitch input:', this.value)">
+                            <div class="range-value-container">
+                                <span id="pitchValue" class="range-value" data-debug="pitch-value">1.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="audio-controls" style="display: none;">
+                    <div class="audio-row">
+                        <audio id="audioPlayer" controls class="audio-player"></audio>
+                        <div class="download-buttons">
+                            <button class="download-button action-button">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <path d="M7 10l5 5 5-5"></path>
+                                    <path d="M12 15V3"></path>
+                                </svg>
+                                <span>下载音频</span>
+                            </button>
+                            <button class="download-button action-button subtitle-button" style="display: none;">
+                                <svg class="icon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <path d="M7 10l5 5 5-5"></path>
+                                    <path d="M12 15V3"></path>
+                                </svg>
+                                <span>下载字幕</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="voice-selector-section">
+                <div class="language-selector">
+                    <label>语言</label>
+                    <select>
+                        <option>中文</option>
+                    </select>
+                </div>
+
+                <div class="voice-options">
+                    <label>选择声音</label>
+                    <div class="voice-list" id="voiceList"></div>
+                </div>
+
+                <div class="subtitle-option">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="subtitleCheckbox">
+                        <span>生成字幕</span>
+                    </label>
+                </div>
+
+                <button class="convert-button">转换为语音</button>
+            </div>
+        </div>
+
+        <section class="features-section">
+            <h2>产品特点</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>专业配音</h3>
+                    <p>提供15种专业的中文配音选，包括男声、女声等多种格，满足不同场景需求。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>高质量合成</h3>
+                    <p>采用最新的语音合成技术，生成自然流畅、清晰度高的语音内容。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>字幕生成</h3>
+                    <p>支持自动生成字幕文件，方便视频制作和听力障碍人士使用。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>便捷下载</h3>
+                    <p>支持音频和字幕文件的快速下载，可直接用于您的项目。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>免费使用</h3>
+                    <p>所有功能完全免费，需注册即可使用基础功能。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>用户友好</h3>
+                    <p>简洁直观的界面设计，操作简，快速上手。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="steps-section">
+            <h2>如何免费使用在线文本转语音</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-circle">1</div>
+                    <div class="step-content">
+                        <h3>输入文本</h3>
+                        <p>在文本框中输入或粘贴您想要转换的文字内容（最多3000字）。</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-circle">2</div>
+                    <div class="step-content">
+                        <h3>选择声音</h3>
+                        <p>从15种专业配音中选择一个适合您需求的声音。</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-circle">3</div>
+                    <div class="step-content">
+                        <h3>生成音频</h3>
+                        <p>点击"转换为语音"按钮，等待系统生成音频文件。</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-circle">4</div>
+                    <div class="step-content">
+                        <h3>下载使用</h3>
+                        <p>预览并下载生成的音频文件，如需要还可以下载配套字幕。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <h2>使用技巧</h2>
+            <div class="tips-content">
+                <div class="tip">
+                    <h3>📝 文本优化</h3>
+                    <p>为获得最佳效果，建议在输入文本时注意以下几点：</p>
+                    <ul>
+                        <li>使用标准的中文���点符号</li>
+                        <li>适当分段，使用逗号和句号</li>
+                        <li>避免特殊字符和表情符号</li>
+                    </ul>
+                </div>
+                <div class="tip">
+                    <h3>🎯 场景选择</h3>
+                    <p>不同的声音适用于不同的场景：</p>
+                    <ul>
+                        <li>新闻播报：建议选择成熟音色的新闻播报</li>
+                        <li>儿童读物：可选择活泼的年轻音色</li>
+                        <li>商业广告：推荐使用专业的播音音色</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/animations.js"></script>
+</body>
+</html>
